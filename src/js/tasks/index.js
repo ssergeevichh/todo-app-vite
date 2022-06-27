@@ -22,7 +22,7 @@ export default function tasksInit() {
 
   tasks.hooks.on('task-state-change', (id) => {
     tasksState.changeTaskState(id)
-    tasks.changeTaskState(tasksState.getTask(id))
+    tasks.displayTaskState(tasksState.getTask(id))
   })
 
   tasks.hooks.on('task-update', (id, newValue) => {

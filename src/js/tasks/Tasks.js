@@ -56,6 +56,7 @@ export default class Tasks {
 
     const taskItemCheckbox = createELement('input', {
       className: 'task-item__checkbox',
+      checked: taskInfo.completed,
       type: 'checkbox',
       onclick: () => {
         this.hooks.emit('task-state-change', null, taskInfo.id)
@@ -83,10 +84,13 @@ export default class Tasks {
   }
 
   renderTask(taskInfo) {
-    if (taskInfo.completed)
+    if (taskInfo.completed) {
       this.completedContainer.appendChild(this.createTaskItem(taskInfo))
-    else
+      this.displayTaskState(taskInfo)
+    }
+    else {
       this.todoContainer.appendChild(this.createTaskItem(taskInfo))
+    }
   }
 
   removeTask(id) {
@@ -94,7 +98,7 @@ export default class Tasks {
     task.remove()
   }
 
-  changeTaskState({ id, completed }) {
+  displayTaskState({ id, completed }) {
     const taskItem = document.querySelector(`[data-id="${id}"]`)
     const editButton = taskItem.querySelector('.btn--type-edit')
     if (completed) {
