@@ -83,7 +83,10 @@ export default class Tasks {
   }
 
   renderTask(taskInfo) {
-    this.todoContainer.appendChild(this.createTaskItem(taskInfo))
+    if (taskInfo.completed)
+      this.completedContainer.appendChild(this.createTaskItem(taskInfo))
+    else
+      this.todoContainer.appendChild(this.createTaskItem(taskInfo))
   }
 
   removeTask(id) {
