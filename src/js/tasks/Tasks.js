@@ -1,27 +1,30 @@
 import EventBus from 'js-event-bus'
+import createForm from '../form/create-form'
 import { createELement, getRandomId } from '@/js/helpers/helper'
 
 export default class Tasks {
-  constructor(form, todoContainer, completedContainer) {
+  constructor(form, todoContainer, completedContainer, todoAnchor) {
     this.todoContainer = todoContainer
     this.completedContainer = completedContainer
+    this.todoAnchor = todoAnchor
     this.hooks = new EventBus()
-
-    this.hooks.on('task-updated', this.editTask.bind(this))
 
     this.formInit(form)
   }
 
   formInit(form) {
-    form.addEventListener('submit', (e) => {
+    const formEl = createForm(form)
+    this.todoAnchor.before(formEl)
+
+    formEl.addEventListener('submit', (e) => {
       e.preventDefault()
-      const taskName = form.querySelector('[name="task"]').value
+      const taskName = formEl.querySelector('[name="task"]').value
       if (taskName) {
         this.hooks.emit('task-add', null, {
           name: taskName,
           id: getRandomId(),
         })
-        form.reset()
+        formEl.reset()
       }
     })
   }

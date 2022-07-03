@@ -1,4 +1,4 @@
 import '../styles/main.scss'
-import tasksInit from '@/js/tasks/index'
+import todoInit from './tasks'
 
-tasksInit()
+todoInit('.add-task-form', '#tasks-todo', '#tasks-completed', '.tasks-wrapper')
