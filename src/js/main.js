@@ -1,4 +1,9 @@
 import '../styles/main.scss'
-import todoInit from './tasks'
+import Model from './tasks/Model'
+import Controller from './tasks/Controller'
+import View from './tasks/View'
 
-todoInit('.add-task-form', '#tasks-todo', '#tasks-completed', '.tasks-wrapper')
+const container = document.querySelector('.main-block')
+const tasksView = new View(container)
+const tasksModel = new Model()
+const tasksController = new Controller(tasksModel, tasksView)

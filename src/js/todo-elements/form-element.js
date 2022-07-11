@@ -1,9 +1,17 @@
 import { createELement } from '../helpers/helper'
 
-export default function createForm(formClassName) {
+export default function createForm({ onSubmit }) {
   const form = createELement('form', {
-    className: formClassName,
+    className: 'add-task-form',
     action: '#',
+    onsubmit: (e) => {
+      e.preventDefault()
+      const taskName = form.querySelector('[name="task"]').value
+      if (taskName) {
+        onSubmit(taskName)
+        form.reset()
+      }
+    },
   })
   const formTitle = createELement('div', {
     className: 'add-task-form__title',

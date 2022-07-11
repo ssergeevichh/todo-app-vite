@@ -13,5 +13,17 @@ export function createELement(tag, props) {
 }
 
 export function getRandomId() {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+  return Math.floor(Math.random() * (100000 - 1 + 1)) + 1
+}
+
+export function isPromise(promise) {
+  return !!promise && typeof promise.then === 'function'
+}
+
+export function createErrorMessage(message) {
+  const errorMessage = document.createElement('div')
+  errorMessage.classList.add('error-message')
+  errorMessage.innerText = message
+
+  return errorMessage
 }

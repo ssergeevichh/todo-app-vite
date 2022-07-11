@@ -1,6 +1,7 @@
 .main-block {
   padding-top: 45px;
   padding-bottom: 45px;
+  position: relative;
 }
 
 .add-task-form {
@@ -70,6 +71,7 @@
     font-weight: 400;
     margin-right: 15px;
     line-height: 20px;
+
     &--hidden {
       display: none;
     }
@@ -127,6 +129,26 @@
   display: flex;
   gap: 10px;
   margin-left: auto;
+}
+
+.error-message {
+  transition: all 0.3s ease-in-out;
+  background-color: red;
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+  right: -20%;
+  max-width: 200px;
+  top: 10px;
+  padding: 10px;
+  box-shadow: 4px 4px 4px rgb(0 0 0 / 61%);
+
+  &--active {
+    transition: all 0.3s ease-in-out;
+    border-radius: $border-radius;
+    right: 0;
+    top: 10px;
+  }
 }
 
 @media(max-width: 991px) {
